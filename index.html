@@ -5,31 +5,40 @@
   <meta charset="UTF-8">
   <title>Maternal Mortality Simulation</title>
   <style>
-    body {
-      margin: 0;
-      background-color: white;
-      overflow: hidden;
-      position: relative;
-    }
-    .point {
-      width: 6px;
-      height: 6px;
-      background-color: black;
-      border-radius: 50%;
-      position: absolute;
-    }
-    #explanation {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      background: rgba(255,255,255,0.8);
-      padding: 10px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      z-index: 1000;
-      border-radius: 5px;
-    }
-  </style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+    font-family: Arial, sans-serif;
+  }
+
+  .point {
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  #explanation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+</style>
 </head>
 <body>
   <div id="explanation">
@@ -40,14 +49,29 @@
 
   <script>
     function addPoint() {
-      const point = document.createElement("div");
-      point.className = "point";
-      point.style.top = Math.random() * window.innerHeight + "px";
-      point.style.left = Math.random() * window.innerWidth + "px";
-      document.body.appendChild(point);
-    }
+  const point = document.createElement("div");
+  point.className = "point";
 
-    // Añadir un punto cada segundo (equivalente a una muerte materna cada 2 min reales)
+  const padding = 100; 
+  let x = Math.random() * window.innerWidth;
+  let y = Math.random() * window.innerHeight;
+
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  
+  while (x > centerX - padding && x < centerX + padding &&
+         y > centerY - padding && y < centerY + padding) {
+    x = Math.random() * window.innerWidth;
+    y = Math.random() * window.innerHeight;
+  }
+
+  point.style.left = `${x}px`;
+  point.style.top = `${y}px`;
+  document.body.appendChild(point);
+}
+
+    
     setInterval(addPoint, 1000);
   </script>
 </body>
