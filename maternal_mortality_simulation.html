@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maternal Mortality Simulation</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: white;
+      overflow: hidden;
+      position: relative;
+    }
+    .point {
+      width: 6px;
+      height: 6px;
+      background-color: black;
+      border-radius: 50%;
+      position: absolute;
+    }
+    #explanation {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(255,255,255,0.8);
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      z-index: 1000;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="explanation">
+    <strong>Simulación acelerada:</strong><br>
+    Cada punto representa una muerte materna.<br>
+    En esta animación, <strong>cada segundo equivale a 2 minutos reales.</strong>
+  </div>
+
+  <script>
+    function addPoint() {
+      const point = document.createElement("div");
+      point.className = "point";
+      point.style.top = Math.random() * window.innerHeight + "px";
+      point.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(point);
+    }
+
+    // Añadir un punto cada segundo (equivalente a una muerte materna cada 2 min reales)
+    setInterval(addPoint, 1000);
+  </script>
+</body>
+</html>
